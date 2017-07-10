@@ -1,0 +1,14 @@
+#todo {
+  width: 100%;
+  height: 100px;
+  text-align: center;
+}
+#fooList {
+  width: 100%;
+  list-style: none;
+}
+#fooList li {
+  text-align: left;
+  height: 40px;
+  line-height: 40px;
+}

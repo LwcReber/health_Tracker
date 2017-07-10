@@ -1,0 +1,1 @@
+{"version":3,"sources":["collections/foodList.js"],"names":["ServiceList","Backbone","Collection","extend","model"],"mappings":"YAAA,IAAIA,aAAcC,SAASC,WAAWC,QAAtCC,MAAIJ","file":"foodList.js","sourcesContent":["var ServiceList = Backbone.Collection.extend({\r\n\t\t// Will hold objects of the Service model\r\n\t\tmodel: Todo,\r\n});\r\n"]}
