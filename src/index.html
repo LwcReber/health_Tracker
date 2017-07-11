@@ -8,10 +8,11 @@
   <link rel="stylesheet" href="css/app.css">
 </head>
 <body>
+  <h1 class="app-name">health Tracker</h1>
   <div id="todo">
-    <input class="search" type="text" name="" value="" placeholder="enter your food name">
+    <input class="searchIpt" type="text" name="" value="" placeholder="enter food's name">
+    <button class="searchBtn" type="button" name="button">搜索</button>
     <ul id="fooList">
-
     </ul>
   </div>
   <script type="text/template" id="item-template">
@@ -19,17 +20,22 @@
       <input class="edit" placeholder="<%= title %>">
     </div>
   </script>
-  <!-- <script type="text/template" id="item-template">
-    <div class="view">
-      <input class="edit" placeholder="<%= title %>">
-    </div>
-  </script> -->
+  <script type="text/template" id="food-template">
+     <% _.each(foodLists, function(food) { %>
+      <li>
+          <input type="radio" value="" name="food"/>
+          <span><%= food.get('brandName') %></span>
+          <span><%= food.get('title') %></span>
+          <span class="calories">calories: <%= food.get('calories') %></span>
+      </li>
+    <%}); %>
+  </script>
   <script src="libs/jquery.min.js"></script>
   <script src="libs/underscore.js"></script>
   <script src="libs/backbone.js"></script>
   <script defer src="js/models/todo.js"></script>
-  <!-- <script defer src="js/views/todo-view.js"></script> -->
   <script defer src="js/collections/foodList.js"></script>
+  <!-- <script defer src="js/views/todo-view.js"></script> -->
   <script defer src="js/views/app-view.js"></script>
   <script defer src="js/app.js"></script>
 </body>

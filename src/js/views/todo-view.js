@@ -2,9 +2,10 @@ var TodoView = Backbone.View.extend({
 
   tagName: 'li',
   // Cache the template function for a single item.
-  todoTpl: _.template($('#item-template').html()),
+  // todoTpl: _.template($('#item-template').html()),
 
   events: {
+    'click': 'toggleService'
   },
 
   // Called when the view is first created
@@ -15,20 +16,13 @@ var TodoView = Backbone.View.extend({
     // this.listenTo(someCollection, 'all', this.render);
     // but you can actually run this example right now by
     // calling
-    this.render();
+    this.listenTo(this.model, 'change', this.render);
   },
 
   // Re-render the titles of the todo item.
   render: function() {
-    this.$el.html(this.todoTpl(this.model.attributes));
-    // $el here is a reference to the jQuery element
-    // associated with the view, todoTpl is a reference
-    // to an Underscore template and model.attributes
-    // contains the attributes of the model.
-    // Altogether, the statement is replacing the HTML of
-    // a DOM element with the result of instantiating a
-    // template with the model's attributes.
-    this.input = this.$('.edit');
+    // this.$el.html(this.todoTpl(this.model.attributes));
+    this.$('input').prop('checked', this.model.get('checked'));
     return this;
   },
 
@@ -39,11 +33,8 @@ var TodoView = Backbone.View.extend({
   close: function() {
     // executed when todo loses focus
   },
-
-	// If you're pressing `escape` we revert your change by simply leaving
-	// the `editing` state.
-	revertOnEscape: function(e) {
-		if (e.which === ESC_KEY) {
-		}
+  toggleService: function(){
+    console.log(222);
+		this.model.toggle();
 	}
 });

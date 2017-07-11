@@ -1,2 +1,2 @@
-"use strict";var TodoView=Backbone.View.extend({tagName:"li",todoTpl:_.template($("#item-template").html()),events:{},initialize:function(){this.$el=$("#todo"),this.render()},render:function(){return this.$el.html(this.todoTpl(this.model.attributes)),this.input=this.$(".edit"),this},edit:function(){},close:function(){},revertOnEscape:function(t){t.which,ESC_KEY}});
+"use strict";var TodoView=Backbone.View.extend({tagName:"li",events:{click:"toggleService"},initialize:function(){this.$el=$("#todo"),this.listenTo(this.model,"change",this.render)},render:function(){return this.$("input").prop("checked",this.model.get("checked")),this},edit:function(){},close:function(){},toggleService:function(){console.log(222),this.model.toggle()}});
 //# sourceMappingURL=todo-view.js.map

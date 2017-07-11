@@ -1,4 +1,7 @@
-#fooList,#fooList li,#todo{margin:0}
-#todo{width:100%;height:100px;text-align:center}
+#fooList,#fooList li,#todo,.app-name,.calories,.searchIpt{margin:0}
+.app-name{text-align:center}
+#todo{width:100%;margin-top:20px;text-align:center}
+.searchIpt{width:250px;height:50px;font-size:20px}
 #fooList{width:100%;list-style:none}
-#fooList li{text-align:left;height:40px;line-height:40px}
+#fooList li{text-align:left;height:40px;line-height:40px;display:block}
+.calories{margin-left:10px}
