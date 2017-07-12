@@ -36,6 +36,7 @@
     "http-server": "^0.9.0",
     "jquery": "^3.2.1",
     "postcss-autoreset": "^2.0.0",
-    "postcss-short": "^4.1.0"
+    "postcss-short": "^4.1.0",
+    "spin.js": "^2.3.2"
   }
 }

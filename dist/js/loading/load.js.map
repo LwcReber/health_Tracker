@@ -1,0 +1,1 @@
+{"version":3,"sources":["loading/load.js"],"names":["loadTarget","$","get","spinner","Spinner","top","spin"],"mappings":"YAAA,IAAIA,YAAaC,EAAE,SAASC,IAAI,GAC5BC,QAAU,GAAIC,UAASC,IAAK,SAASC","file":"load.js","sourcesContent":["var loadTarget = $('#load').get(0);\r\nvar spinner = new Spinner({top: '50px'}).spin();\r\n"]}

@@ -1,7 +1,7 @@
 var TodoView = Backbone.View.extend({
 
   tagName: 'li',
-  // Cache the template function for a single item.
+
   // todoTpl: _.template($('#item-template').html()),
 
   events: {
@@ -10,8 +10,6 @@ var TodoView = Backbone.View.extend({
 
   // Called when the view is first created
   initialize: function() {
-    this.$el = $('#todo');
-
     // Later we'll look at:
     // this.listenTo(someCollection, 'all', this.render);
     // but you can actually run this example right now by
@@ -21,20 +19,21 @@ var TodoView = Backbone.View.extend({
 
   // Re-render the titles of the todo item.
   render: function() {
-    // this.$el.html(this.todoTpl(this.model.attributes));
+    this.$el.html(
+      '<input type="radio" value="" name="food"/>'
+      + '<span>' + this.model.get('brandName') + '</span>'
+      + '<span>' + this.model.get('title') + '</span>'
+      + '<span class="calories">calories: ' + this.model.get('calories') + '</span>'
+    );
     this.$('input').prop('checked', this.model.get('checked'));
     return this;
-  },
-
-  edit: function() {
-    // executed when todo label is double clicked
   },
 
   close: function() {
     // executed when todo loses focus
   },
+
   toggleService: function(){
-    console.log(222);
 		this.model.toggle();
 	}
 });
