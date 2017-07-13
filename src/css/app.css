@@ -3,8 +3,9 @@
 }
 
 #todo {
+  position: relative;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 60px;
   text-align: center;
 }
 
@@ -13,22 +14,67 @@
   height: 50px;
   font-size: 20px;
 }
+.searchBtn {
+  width: 100px;
+  height: 50px;
+}
 /*加载指示*/
 #load {
   position: relative;
 }
 
-#fooList {
-  width: 100%;
+/*加载回来的食物列表*/
+.showList {
+  position: absolute;
+  left: 0;
+  top: 120px;
+  width: 50%;
+}
+
+#foodList {
+
   list-style: none;
 }
 
-#fooList li {
+#foodList li {
   text-align: left;
+  width: 100%;
   height: 40px;
   line-height: 40px;
   display: block;
+  cursor: pointer;
 }
+#foodList li:hover {
+  background-color: #456;
+}
+
 .calories {
+  font-weight: bold;
   margin-left: 10px;
+}
+
+/*计算食物卡路里*/
+.calculate {
+  position: absolute;
+  right: 0px;
+  top: 120px;
+  width: 50%;
+}
+
+#selectedFood {
+  list-style: none;
+}
+
+#selectedFood li {
+  text-align: left;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  display: block;
+  cursor: pointer;
+}
+/*总卡路里数*/
+#calCalories {
+  padding-top: 10px;
+  font-weight: bold;
 }

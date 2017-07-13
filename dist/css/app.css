@@ -1,8 +1,15 @@
-#fooList,#fooList li,#load,#todo,.app-name,.calories,.searchIpt{margin:0}
+#calCalories,#foodList,#foodList li,#load,#selectedFood,#selectedFood li,#todo,.app-name,.calculate,.calories,.searchBtn,.searchIpt,.showList{margin:0}
 .app-name{text-align:center}
-#todo{width:100%;margin-top:20px;text-align:center}
+#todo{position:relative;width:100%;margin-top:60px;text-align:center}
 .searchIpt{width:250px;height:50px;font-size:20px}
+.searchBtn{width:100px;height:50px}
 #load{position:relative}
-#fooList{width:100%;list-style:none}
-#fooList li{text-align:left;height:40px;line-height:40px;display:block}
-.calories{margin-left:10px}
+.showList{position:absolute;left:0;top:120px;width:50%}
+#foodList{list-style:none}
+#foodList li{text-align:left;width:100%;height:40px;line-height:40px;display:block;cursor:pointer}
+#foodList li:hover{background-color:#456}
+.calories{font-weight:700;margin-left:10px}
+.calculate{position:absolute;right:0;top:120px;width:50%}
+#selectedFood{list-style:none}
+#selectedFood li{text-align:left;width:100%;height:40px;line-height:40px;display:block;cursor:pointer}
+#calCalories{padding-top:10px;font-weight:700}

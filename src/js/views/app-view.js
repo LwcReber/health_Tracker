@@ -1,43 +1,29 @@
-var TodoView = Backbone.View.extend({
+var AppView = Backbone.View.extend({
 
-  tagName: '#todo',
-
+  el: '#todo',
   events: {
     'keypress .searchIpt': 'createOnEnter',
-    'click .searchBtn': 'search'
+    'click .searchBtn': 'search',
   },
 
   // Called when the view is first created
   initialize: function() {
-    this.$el = $('#todo');
-    this.fooList = $('#fooList');
+    this.foodListEle = $('#foodList');
     this.input = this.$('.searchIpt');
     this.searchBtnStatus = false;
-    // 监听collections有改变就render
-    this.listenTo(foodLists, 'change: _meta', this.render);
-    // this.listenTo(foodLists, 'change', this.render);
   },
 
   // Re-render the titles of the todo item.
   render: function() {
-
     // 刷新食物列表
-    foodLists.each(function(food) {
-      console.log(food);
-      var view = new TodoView({model: food});
-      this.fooList.append(view.render().el);
-    }, this);
-    // var foodTemplate = _.template( $('#food-template').html(), {foodLists: foodLists.models});
-    // this.fooList.html(foodTemplate);
+    if (foodsCol.length > 0) {
+      foodsCol.each(function(food) {
+        var view = new TodoView({model: food});
+        this.foodListEle.append(view.render().el);
+      }, this);
+      this.foodListEle.show();
+    }
     return this;
-  },
-
-  edit: function() {
-    // executed when todo label is double clicked
-  },
-
-  close: function() {
-    // executed when todo loses focus
   },
 
   search: function() {
@@ -56,40 +42,36 @@ var TodoView = Backbone.View.extend({
         self.searchBtnStatus = false;
       }
       // 清除原来内容
-      this.fooList.html('');
-      // 显示加载中显示器
+      this.foodListEle.html('');
+      // 显示加载显示器
       spinner.spin(loadTarget);
       $.ajax({
         url: nutUrl,
       })
       .done(function(result) {
         // 清除collections内容
-        foodLists.reset();
-        // 重设加载状态
-        foodLists.meta(false);
+        foodsCol.reset();
         // 成功响应后，关闭加载显示器
         spinner.spin();
         if (Object.prototype.toString.call(result).indexOf('Object') !== -1) {
           if (result.hits) {
             var myTodos = [];
-          for (var i = 0; i < result.hits.length; i++) {
-            // new 一个 model
-            var myTodo = new Todo({
-              title: result.hits[i].fields.item_name,
-              brandName: result.hits[i].fields.brand_name,
-              calories: result.hits[i].fields.nf_calories
-            });
-            // 如果是USDA的不用显示USDA name
-            if (myTodo.get('brandName') === 'USDA') {
-              myTodo.set('brandName', '');
+            for (var i = 0; i < result.hits.length; i++) {
+              // new 一个 model
+              var myTodo = new Todo({
+                title: result.hits[i].fields.item_name,
+                brandName: result.hits[i].fields.brand_name,
+                calories: result.hits[i].fields.nf_calories
+              });
+              // 如果是USDA的不用显示USDA name
+              if (myTodo.get('brandName') === 'USDA') {
+                myTodo.set('brandName', '');
+              }
+              myTodos.push(myTodo);
             }
-            myTodos.push(myTodo);
-          }
-          // 添加到collections中
-          foodLists.push(myTodos);
-          foodLists.meta(true);
-          console.log(foodLists);
-          console.log(foodLists._meta.completed);
+            // 添加到collections中
+            foodsCol.push(myTodos);
+            self.render();
           }
         } else {
           alert('响应的结果数据类型不是一个对象');

@@ -2,18 +2,13 @@ var TodoView = Backbone.View.extend({
 
   tagName: 'li',
 
-  // todoTpl: _.template($('#item-template').html()),
-
   events: {
     'click': 'toggleService'
   },
 
   // Called when the view is first created
   initialize: function() {
-    // Later we'll look at:
-    // this.listenTo(someCollection, 'all', this.render);
-    // but you can actually run this example right now by
-    // calling
+    this.food = $('#foodList');
     this.listenTo(this.model, 'change', this.render);
   },
 
@@ -29,11 +24,10 @@ var TodoView = Backbone.View.extend({
     return this;
   },
 
-  close: function() {
-    // executed when todo loses focus
-  },
-
-  toggleService: function(){
+  toggleService: function() {
 		this.model.toggle();
+    this.food.hide(500);
+    selectedFoods.push(this.model);
+    console.log(selectedFoods);
 	}
 });
