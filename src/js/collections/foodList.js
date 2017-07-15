@@ -1,8 +1,5 @@
-var ServiceList = Backbone.Collection.extend({
-		model: Todo,
-		// 获取已经被选择的食物
-		getChecked: function() {
-			return this.where({checked:true});
-		}
+var FoodList = Backbone.Collection.extend({
+	model: Food,
+
 });
-var foodsCol = new ServiceList();
+var foodsCol = new FoodList();

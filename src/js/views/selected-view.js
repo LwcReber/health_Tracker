@@ -1,19 +1,22 @@
 var SelectedView = Backbone.View.extend({
 
   tagName: '#selectedFood',
-  // template: _.template($('#select-template').html()),
+
   initialize: function() {
     this.selectedFood = $('#selectedFood');
     this.calCalories = $('#calCalories');
 
+    // 获取localStorage的内容，并render
+    this.listenTo(selectedFoods, 'reset', this.render);
     this.listenTo(selectedFoods, 'all', this.render);
+    selectedFoods.fetch({reset: true});
   },
 
-  // Re-render the titles of the todo item.
   render: function() {
-    // 卡路里总数
+    // 计算卡路里总数
     var totalCalorise = 0;
     selectedFoods.models.forEach(function(model) {
+      // 卡路里为0不计算
       if (model.get('calories') == 0) return;
       totalCalorise += model.get('calories');
     });
@@ -24,8 +27,10 @@ var SelectedView = Backbone.View.extend({
       alert('model的calories参数不是number类型');
     }
 
+    // render the selected food
     var foodTemplate = _.template( $('#select-template').html(), {selectedFood: selectedFoods.models});
     this.selectedFood.html(foodTemplate);
+
     return this;
-  },
+  }
 });

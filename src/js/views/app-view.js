@@ -55,22 +55,22 @@ var AppView = Backbone.View.extend({
         spinner.spin();
         if (Object.prototype.toString.call(result).indexOf('Object') !== -1) {
           if (result.hits) {
-            var myTodos = [];
+            var newFoods = [];
             for (var i = 0; i < result.hits.length; i++) {
               // new 一个 model
-              var myTodo = new Todo({
+              var newFood = new Food({
                 title: result.hits[i].fields.item_name,
                 brandName: result.hits[i].fields.brand_name,
                 calories: result.hits[i].fields.nf_calories
               });
               // 如果是USDA的不用显示USDA name
-              if (myTodo.get('brandName') === 'USDA') {
-                myTodo.set('brandName', '');
+              if (newFood.get('brandName') === 'USDA') {
+                newFood.set('brandName', '');
               }
-              myTodos.push(myTodo);
+              newFoods.push(newFood);
             }
             // 添加到collections中
-            foodsCol.push(myTodos);
+            foodsCol.push(newFoods);
             self.render();
           }
         } else {

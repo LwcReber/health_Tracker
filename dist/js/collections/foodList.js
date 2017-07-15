@@ -1,2 +1,2 @@
-"use strict";var ServiceList=Backbone.Collection.extend({model:Todo,getChecked:function(){return this.where({checked:!0})}}),foodsCol=new ServiceList;
+"use strict";var FoodList=Backbone.Collection.extend({model:Food}),foodsCol=new FoodList;
 //# sourceMappingURL=foodList.js.map

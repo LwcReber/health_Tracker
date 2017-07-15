@@ -24,10 +24,22 @@ var TodoView = Backbone.View.extend({
     return this;
   },
 
+  // 新建属性
+	newAttributes: function () {
+    var self = this;
+		return {
+      title: self.model.get('title'),
+      brandName: self.model.get('brandName'), // 店铺名
+      calories: self.model.get('calories'),
+      checked: self.model.get('checked') // 选中状态
+    };
+	},
+
   toggleService: function() {
 		this.model.toggle();
     this.food.hide(500);
-    selectedFoods.push(this.model);
+    // 保存到localStorage中 重要步骤！！ 直接传入this.model是不能保存到localStorage中的
+    selectedFoods.create(this.newAttributes());
     console.log(selectedFoods);
 	}
 });
