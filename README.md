@@ -31,10 +31,10 @@ health-Tracker 是一个响应式的食物健康应用，用于查询和计算�
   2. 点击查询的食物列表中的食物后，将把食物添加到卡路里计算列表中同时查询的食物列表将消失，卡路里列表计算出已经选择的食物的卡路里总数
 
 ## 代码补充说明
-食物 M: Food, V: FoodView,  C:FoodList    <br>
+食物  M: Food, V: FoodView,  C:FoodList    <br>
 
 查询食物  V: AppView     <br>
 
-选择其中一个食物 V: SeletedFoodView  C: SelcetedFoods <br>
+选择其中一个食物  V: SeletedFoodView, C: SelcetedFoods <br>
 
 卡路里计算列表 V: CalCaloriesView   <br>
