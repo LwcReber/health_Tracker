@@ -1,0 +1,15 @@
+body {
+  font-size: 16px;
+}
+.showList, #calculateAll {
+  width: 90%;
+  margin: 10px auto;
+}
+
+.searchIpt {
+  margin-left: 5px;
+}
+
+.searchBtn {
+  margin-top: 10px;
+}

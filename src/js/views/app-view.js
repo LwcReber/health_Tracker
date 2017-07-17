@@ -10,6 +10,7 @@ var AppView = Backbone.View.extend({
   initialize: function() {
     this.foodListEle = $('#foodList');
     this.input = this.$('.searchIpt');
+    this.calculateAllEle = $('#calculateAll');
     this.searchBtnStatus = false;
   },
 
@@ -18,7 +19,7 @@ var AppView = Backbone.View.extend({
     // 刷新食物列表
     if (foodsCol.length > 0) {
       foodsCol.each(function(food) {
-        var view = new TodoView({model: food});
+        var view = new FoodView({ model: food });
         this.foodListEle.append(view.render().el);
       }, this);
       this.foodListEle.show();
@@ -31,20 +32,25 @@ var AppView = Backbone.View.extend({
     this.createOnEnter();
   },
 
-	createOnEnter: function(e) {
+  createOnEnter: function(e) {
     var self = this;
     var food = self.input.val();
-    var nutUrl = 'https://api.nutritionix.com/v1_1/search/' + food +'?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat'
-     + '&appId=fafaa50d&appKey=dd6e5d7563cfb23e902d053eca5c80a4';
+    // 不输入内容返回
+    if (food === '') return;
+    var nutUrl = 'https://api.nutritionix.com/v1_1/search/' + food + '?fields=item_name%2Citem_id%2Cbrand_name%2Cnf_calories%2Cnf_total_fat'
+    + '&appId=fafaa50d&appKey=dd6e5d7563cfb23e902d053eca5c80a4';
 
-		if (self.searchBtnStatus === true || e.which === ENTER_KEY) {
+    if (self.searchBtnStatus === true || e.which === ENTER_KEY) {
       if (self.searchBtnStatus === true) {
         self.searchBtnStatus = false;
       }
       // 清除原来内容
       this.foodListEle.html('');
+      // 隐藏收藏的食物列表
+      self.calculateAllEle.hide();
       // 显示加载显示器
       spinner.spin(loadTarget);
+
       $.ajax({
         url: nutUrl,
       })
@@ -53,7 +59,11 @@ var AppView = Backbone.View.extend({
         foodsCol.reset();
         // 成功响应后，关闭加载显示器
         spinner.spin();
+        // 显示食物列表
+        self.calculateAllEle.show();
         if (Object.prototype.toString.call(result).indexOf('Object') !== -1) {
+          // 清除输入框内容
+          self.input.val('');
           if (result.hits) {
             var newFoods = [];
             for (var i = 0; i < result.hits.length; i++) {
@@ -78,8 +88,11 @@ var AppView = Backbone.View.extend({
         }
       })
       .fail(function(respond) {
-        alert('响应失败')
+        // 显示食物列表
+        self.calculateAllEle.show(500);
+        spinner.spin();
+        alert('响应失败，请刷新重试');
       });
-		}
-	}
+    }
+  }
 });

@@ -1,11 +1,25 @@
+body, ul {
+  margin: 0px;
+  padding: 0px;
+}
+
+body {
+  font-size: 22px;
+}
+div, ul>li {
+  box-sizing: border-box;
+}
+
 .app-name {
+  margin-top: 10px;
   text-align: center;
 }
 
 #todo {
   position: relative;
   width: 100%;
-  margin-top: 60px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   text-align: center;
 }
 
@@ -17,7 +31,12 @@
 .searchBtn {
   width: 100px;
   height: 50px;
+  font-size: 20px;
+  background-color: #03A8F3;
+  cursor: pointer;
+  border-radius: 3px;
 }
+
 /*加载指示*/
 #load {
   position: relative;
@@ -25,40 +44,33 @@
 
 /*加载回来的食物列表*/
 .showList {
-  position: absolute;
-  left: 0;
-  top: 120px;
-  width: 50%;
+  width: 993px;
+  margin: auto;
 }
 
 #foodList {
-
+  margin-top: 20px;
   list-style: none;
 }
 
 #foodList li {
   text-align: left;
-  width: 100%;
-  height: 40px;
-  line-height: 40px;
+  line-height: 50px;
   display: block;
   cursor: pointer;
+  background-color: #4BAE4F;
+  box-shadow: 5px 0px 5px #747474;
+  border-radius: 3px;
 }
+
 #foodList li:hover {
-  background-color: #456;
+  background-color: #C7E5C8;
 }
 
-.calories {
-  font-weight: bold;
-  margin-left: 10px;
-}
-
-/*计算食物卡路里*/
-.calculate {
-  position: absolute;
-  right: 0px;
-  top: 120px;
-  width: 50%;
+/*选择的食物总卡路里*/
+#calculateAll {
+  width: 993px;
+  margin: 80px auto;
 }
 
 #selectedFood {
@@ -66,15 +78,73 @@
 }
 
 #selectedFood li {
-  text-align: left;
-  width: 100%;
-  height: 40px;
-  line-height: 40px;
+  position: relative;
+  line-height: 50px;
   display: block;
   cursor: pointer;
+  border-radius: 3px;
+  margin-top: 10px;
+  text-align: left;
+  border-bottom: 1px solid #03A8F3;
+}
+#selectedFood li:hover {
+  background-color:  #C7E5C8;
+  box-shadow: 3px 3px 5px #464549;
 }
 /*总卡路里数*/
 #calCalories {
-  padding-top: 10px;
   font-weight: bold;
+  font-size: 20px;
+  text-align: left;
+}
+
+.foodContent {
+  padding-right: 40px;
+  padding-left: 5px;
+}
+
+.calories {
+  font-weight: bold;
+  margin-left: 10px;
+}
+button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	font-size: 100%;
+	vertical-align: baseline;
+	font-family: inherit;
+	color: inherit;
+	-webkit-appearance: none;
+	-ms-appearance: none;
+	-o-appearance: none;
+	appearance: none;
+  outline: none;
+}
+
+#selectedFood li .destroy {
+  position: absolute;
+	top: 50%;
+	right: 0;
+	bottom: 0;
+	width: 40px;
+	height: 60px;
+  margin-top: -30px;
+	font-size: 22px;
+	color: #03A8F3;
+	-webkit-transition: all 0.2s;
+	transition: all 0.2s;
+}
+
+.destroy:hover
+ {
+	text-shadow: 0 0 1px #000,
+				 0 0 10px rgba(3, 168, 243, 0.8);
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+}
+
+.destroy:after {
+	content: '✖';
 }

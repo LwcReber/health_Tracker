@@ -9,6 +9,6 @@ var Food = Backbone.Model.extend({
   },
   // 切换选中状态
   toggle: function() {
-		this.set('checked', !this.get('checked'));
-	}
+    this.set('checked', !this.get('checked'));
+  }
 });

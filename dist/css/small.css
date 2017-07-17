@@ -1,0 +1,5 @@
+#calculateAll,.searchBtn,.searchIpt,.showList,body{margin:0}
+body{font-size:16px}
+#calculateAll,.showList{width:90%;margin:10px auto}
+.searchIpt{margin-left:5px}
+.searchBtn{margin-top:10px}

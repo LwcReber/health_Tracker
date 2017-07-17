@@ -1,0 +1,2 @@
+"use strict";var SeletedFoodView=Backbone.View.extend({tagName:"li",template:_.template($("#select-template").html()),events:{"click .destroy":"clear"},initialize:function(){this.food=$("#foodList"),this.listenTo(this.model,"destroy",this.remove)},render:function(){return this.$el.html(this.template(this.model.toJSON())),this},clear:function(){this.model.destroy()}});
+//# sourceMappingURL=selectedFood-view.js.map
